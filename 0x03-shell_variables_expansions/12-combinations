@@ -1,0 +1,2 @@
+#!/bin/bash
+echo {a..z}{a..z}|grep -o '[^ ]\+'|grep "oo" -v
