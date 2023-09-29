@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Stops the 7-highlander
+
+id=$(pgrep ./7-highlander -f)
+
+if [ -n "$id" ]
+then
+	pkill "bash ./7-highlander" -f
+fi	
