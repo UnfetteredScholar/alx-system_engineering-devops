@@ -1,4 +1,4 @@
-Host 100.26.9.42
+Host *
     SendEnv LANG LC_*
     HashKnownHosts yes
     GSSAPIAuthentication yes
