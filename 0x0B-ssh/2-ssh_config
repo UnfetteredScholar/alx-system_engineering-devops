@@ -1,4 +1,4 @@
 # Config file
-Host *
+Host 100.26.9.42
     PasswordAuthentication no
     IdentityFile ~/.ssh/school
