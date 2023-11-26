@@ -1,3 +1,4 @@
+# Config file
 Host *
     SendEnv LANG LC_*
     HashKnownHosts yes
