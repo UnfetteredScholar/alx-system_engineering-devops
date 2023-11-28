@@ -1,8 +1,4 @@
-# add stable version of nginx
-exec { 'add nginx stable repo':
-  command => 'sudo add-apt-repository ppa:nginx/stable',
-  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-}
+# Installs and configures nginx
 
 # update software packages list
 exec { 'update packages':
@@ -28,20 +24,18 @@ exec { 'chmod www folder':
   path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
 }
 
-# create index file
-file { '/var/www/html/index.html':
-  content => "Hello World!\n",
+file { 'index.html':
+  path    => '/var/www/html/',
+  content => 'Hello World!\n',
 }
 
-# create index file
-file { '/var/www/html/404.html':
+file { 'error-page.html':
+  path    => '/var/www/html/',
   content => "Ceci n'est pas une page\n",
 }
 
-# add redirection and error page
-file { 'Nginx default config file':
-  ensure  => file,
-  path    => '/etc/nginx/sites-enabled/default',
+file { 'default':
+  path    => '/etc/nginx/sites-enabled',
   content =>
 "server {
         listen 80 default_server;
@@ -64,8 +58,9 @@ file { 'Nginx default config file':
             rewrite ^ https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;
         }
 }
-",
+"
 }
+
 # restart nginx
 exec { 'restart service':
   command => 'service nginx restart',
@@ -77,3 +72,5 @@ service { 'nginx':
   ensure  => running,
   require => Package['nginx'],
 }
+
+
