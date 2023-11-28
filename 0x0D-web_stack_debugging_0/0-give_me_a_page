@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Fixes apache on a docker container
+apt update
+apt install -y apache2
+service apache2 start
