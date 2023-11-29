@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Fixes apache on a docker container
-sudo apt update
-sudo apt install -y apache2
-sudo service apache2 start
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
