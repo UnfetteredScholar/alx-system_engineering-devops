@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # Installs and configures HAproxy
 
+sudo apt-get update
 sudo apt-get install -y --no-install-recommends software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
 sudo apt-get install -y haproxy=2.8.\*;
 
-sudo echo "ENABLE=1" >> /etc/default/haproxy;
+echo "ENABLE=1" >> /etc/default/haproxy;
 
 CONFIG=\
 "global
@@ -36,6 +37,7 @@ defaults
 
 frontend akt_global_frontend
 	bind *:80
+	mode http
 	default_backend akt_global_servers
 
 backend akt_global_servers
@@ -46,7 +48,7 @@ backend akt_global_servers
 	server 323139-web-02 54.237.115.35:80 check
 "
 
-sudo echo "$CONFIG" > /etc/haproxy/haproxy.cfg;
+echo "$CONFIG" > /etc/haproxy/haproxy.cfg;
 
 if [ "$(pgrep -c haproxy)" -le 0 ]; then
         sudo service haproxy start
