@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Fixes a container's nginx and ensures it is running on port 80
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo service nginx restart
