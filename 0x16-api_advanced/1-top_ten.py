@@ -2,7 +2,6 @@
 """Defines a function for retrieving
 hot posts of subreddit"""
 import requests
-import json
 
 
 def top_ten(subreddit):
