@@ -4,25 +4,16 @@ number of subreddit subscribers"""
 
 
 def number_of_subscribers(subreddit):
-    """
-    Gets the number of subscribers to
-    a subreddit.
-
-    Args:
-        subreddit (str): the name of the subreddit
-
-    Returns:
-        The number of subs else 0 for invalid name.
-    """
+    """Queries the Reddit API and returns the number of subscribers
+    to the subreddit"""
     import requests
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-
-    response = requests.get(
-        url, headers={"User-Agent": "My-User-Agent"}, allow_redirects=False
+    sub_info = requests.get(
+        "https://www.reddit.com/r/{}/about.json".format(subreddit),
+        headers={"User-Agent": "My-User-Agent"},
+        allow_redirects=False,
     )
-    if response.status_code >= 300:
+    if sub_info.status_code >= 300:
         return 0
-    else:
-        data = response.json()
-        return data["data"]["subscribers"]
+
+    return sub_info.json().get("data").get("subscribers")
