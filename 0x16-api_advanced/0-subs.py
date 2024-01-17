@@ -2,7 +2,6 @@
 """Defines a function for retrieving
 number of subreddit subscribers"""
 import requests
-import json
 
 
 def number_of_subscribers(subreddit):
