@@ -19,4 +19,9 @@ server {
         location = /airbnb-onepage/ {
                 proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
         }
+
+        # 0x1A-application_server: 3. Add a route with query parameters
+        location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+                proxy_pass http://0.0.0.0:5001/number_odd_or_even/$1;
+        }
 }
